@@ -1,0 +1,77 @@
+﻿@model IEnumerable<InnguzApp.ContextoDatos.Usuarios>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="w-full h-48 bg-indigo-400 flex p-16 items-center justify-between">
+    <h2 class="text-center text-2xl font-semibold pb-6 text-white">Usuarios</h2>
+    <p class="self-center">
+        @Html.ActionLink("Crear Nuevo", "Create", null, new {@class = "create text-white" })
+    </p>
+</div>
+
+<div class="w-full overflow-hidden p-4 md:p-16">
+    <div class="overflow-x-auto rounded-t-lg">
+        <table class="table w-full">
+            <tr class="head-table">
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Apellido)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Posicion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Correo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fecha_registro)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr class="row-body">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Posicion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Correo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha_registro)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
