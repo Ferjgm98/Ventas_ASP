@@ -3,7 +3,7 @@
   <Table Name="dbo.Categorias" Member="Categorias">
     <Type Name="Categorias">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="FechaInserta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="UsuarioInserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="FechaActualiza" Type="System.DateTime" DbType="Date" CanBeNull="true" />
@@ -14,16 +14,16 @@
   <Table Name="dbo.Estados_Periodo" Member="Estados_Periodo">
     <Type Name="Estados_Periodo">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="estado" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="estado" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
       <Association Name="Estados_Periodo_Periodos" Member="Periodos" ThisKey="id" OtherKey="estado" Type="Periodos" />
     </Type>
   </Table>
   <Table Name="dbo.Periodos" Member="Periodos">
     <Type Name="Periodos">
       <Column Name="id_periodo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="mes" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="año" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="estado" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="año" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="estado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="FechaCreacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="Periodos_Ventas" Member="Ventas" ThisKey="id_periodo" OtherKey="periodo_id" Type="Ventas" />
       <Association Name="Estados_Periodo_Periodos" Member="Estados_Periodo" ThisKey="estado" OtherKey="id" Type="Estados_Periodo" IsForeignKey="true" />
@@ -32,11 +32,11 @@
   <Table Name="dbo.Productos" Member="Productos">
     <Type Name="Productos">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Descripción" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Precio" Type="System.Decimal" DbType="Decimal(4,2)" CanBeNull="true" />
-      <Column Name="Tipo_Producto_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Categoria_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripción" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Precio" Type="System.Decimal" DbType="Decimal(4,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Tipo_Producto_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Categoria_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="FechaInserta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="UsuarioInserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="FechaActualiza" Type="System.DateTime" DbType="Date" CanBeNull="true" />
@@ -49,7 +49,7 @@
   <Table Name="dbo.Tipo_Producto" Member="Tipo_Producto">
     <Type Name="Tipo_Producto">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Tipo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="FechaInserta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="UsuarioInserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="FechaActualiza" Type="System.DateTime" DbType="Date" CanBeNull="true" />
@@ -60,34 +60,36 @@
   <Table Name="dbo.Usuarios" Member="Usuarios">
     <Type Name="Usuarios">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Apellido" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Posicion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Column Name="Telefono" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
-      <Column Name="Correo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Fecha_registro" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Association Name="Usuarios_Ventas" Member="Ventas" ThisKey="Id" OtherKey="Usuario_id" Type="Ventas" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellido" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Posicion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Foto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Fecha_registro" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Usuarios_Ventas" Member="Ventas" ThisKey="Id" OtherKey="Producto_Servicio_id" Type="Ventas" />
     </Type>
   </Table>
   <Table Name="dbo.Ventas" Member="Ventas">
     <Type Name="Ventas">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Descripcion" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
-      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Monto" Type="System.Decimal" DbType="Decimal(4,2)" CanBeNull="true" />
-      <Column Name="IVA" Type="System.Decimal" DbType="Decimal(4,2)" CanBeNull="true" />
-      <Column Name="Total" Type="System.Decimal" DbType="Decimal(4,2)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Monto" Type="System.Decimal" DbType="Decimal(4,2) NOT NULL" CanBeNull="false" />
+      <Column Name="IVA" Type="System.Decimal" DbType="Decimal(4,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Total" Type="System.Decimal" DbType="Decimal(4,2) NOT NULL" CanBeNull="false" />
       <Column Name="Usuario_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Producto_Servicio_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="periodo_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="FechaInserta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="UsuarioInserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="FechaActualiza" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="UsuarioActualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="periodo_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Periodos_Ventas" Member="Periodos" ThisKey="periodo_id" OtherKey="id_periodo" Type="Periodos" IsForeignKey="true" />
       <Association Name="Productos_Ventas" Member="Productos" ThisKey="Producto_Servicio_id" OtherKey="id" Type="Productos" IsForeignKey="true" />
-      <Association Name="Usuarios_Ventas" Member="Usuarios" ThisKey="Usuario_id" OtherKey="Id" Type="Usuarios" IsForeignKey="true" />
+      <Association Name="Usuarios_Ventas" Member="Usuarios" ThisKey="Producto_Servicio_id" OtherKey="Id" Type="Usuarios" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -204,7 +204,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string Nombre
 		{
 			get
@@ -398,7 +398,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="VarChar(25)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="VarChar(25) NOT NULL", CanBeNull=false)]
 		public string estado
 		{
 			get
@@ -472,11 +472,11 @@ namespace InnguzApp.ContextoDatos
 		
 		private int _id_periodo;
 		
-		private System.Nullable<int> _mes;
+		private int _mes;
 		
-		private System.Nullable<int> _año;
+		private int _año;
 		
-		private System.Nullable<int> _estado;
+		private int _estado;
 		
 		private System.Nullable<System.DateTime> _FechaCreacion;
 		
@@ -490,11 +490,11 @@ namespace InnguzApp.ContextoDatos
     partial void OnCreated();
     partial void Onid_periodoChanging(int value);
     partial void Onid_periodoChanged();
-    partial void OnmesChanging(System.Nullable<int> value);
+    partial void OnmesChanging(int value);
     partial void OnmesChanged();
-    partial void OnañoChanging(System.Nullable<int> value);
+    partial void OnañoChanging(int value);
     partial void OnañoChanged();
-    partial void OnestadoChanging(System.Nullable<int> value);
+    partial void OnestadoChanging(int value);
     partial void OnestadoChanged();
     partial void OnFechaCreacionChanging(System.Nullable<System.DateTime> value);
     partial void OnFechaCreacionChanged();
@@ -527,8 +527,8 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mes", DbType="Int")]
-		public System.Nullable<int> mes
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mes", DbType="Int NOT NULL")]
+		public int mes
 		{
 			get
 			{
@@ -547,8 +547,8 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_año", DbType="Int")]
-		public System.Nullable<int> año
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_año", DbType="Int NOT NULL")]
+		public int año
 		{
 			get
 			{
@@ -567,8 +567,8 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="Int")]
-		public System.Nullable<int> estado
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="Int NOT NULL")]
+		public int estado
 		{
 			get
 			{
@@ -651,7 +651,7 @@ namespace InnguzApp.ContextoDatos
 					}
 					else
 					{
-						this._estado = default(Nullable<int>);
+						this._estado = default(int);
 					}
 					this.SendPropertyChanged("Estados_Periodo");
 				}
@@ -703,11 +703,11 @@ namespace InnguzApp.ContextoDatos
 		
 		private string _Descripción;
 		
-		private System.Nullable<decimal> _Precio;
+		private decimal _Precio;
 		
-		private System.Nullable<int> _Tipo_Producto_Id;
+		private int _Tipo_Producto_Id;
 		
-		private System.Nullable<int> _Categoria_Id;
+		private int _Categoria_Id;
 		
 		private System.Nullable<System.DateTime> _FechaInserta;
 		
@@ -733,11 +733,11 @@ namespace InnguzApp.ContextoDatos
     partial void OnNombreChanged();
     partial void OnDescripciónChanging(string value);
     partial void OnDescripciónChanged();
-    partial void OnPrecioChanging(System.Nullable<decimal> value);
+    partial void OnPrecioChanging(decimal value);
     partial void OnPrecioChanged();
-    partial void OnTipo_Producto_IdChanging(System.Nullable<int> value);
+    partial void OnTipo_Producto_IdChanging(int value);
     partial void OnTipo_Producto_IdChanged();
-    partial void OnCategoria_IdChanging(System.Nullable<int> value);
+    partial void OnCategoria_IdChanging(int value);
     partial void OnCategoria_IdChanged();
     partial void OnFechaInsertaChanging(System.Nullable<System.DateTime> value);
     partial void OnFechaInsertaChanged();
@@ -777,7 +777,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string Nombre
 		{
 			get
@@ -797,7 +797,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripción", DbType="VarChar(255)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripción", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
 		public string Descripción
 		{
 			get
@@ -817,8 +817,8 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Precio", DbType="Decimal(4,2)")]
-		public System.Nullable<decimal> Precio
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Precio", DbType="Decimal(4,2) NOT NULL")]
+		public decimal Precio
 		{
 			get
 			{
@@ -837,8 +837,8 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo_Producto_Id", DbType="Int")]
-		public System.Nullable<int> Tipo_Producto_Id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo_Producto_Id", DbType="Int NOT NULL")]
+		public int Tipo_Producto_Id
 		{
 			get
 			{
@@ -861,8 +861,8 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Categoria_Id", DbType="Int")]
-		public System.Nullable<int> Categoria_Id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Categoria_Id", DbType="Int NOT NULL")]
+		public int Categoria_Id
 		{
 			get
 			{
@@ -1005,7 +1005,7 @@ namespace InnguzApp.ContextoDatos
 					}
 					else
 					{
-						this._Categoria_Id = default(Nullable<int>);
+						this._Categoria_Id = default(int);
 					}
 					this.SendPropertyChanged("Categorias");
 				}
@@ -1039,7 +1039,7 @@ namespace InnguzApp.ContextoDatos
 					}
 					else
 					{
-						this._Tipo_Producto_Id = default(Nullable<int>);
+						this._Tipo_Producto_Id = default(int);
 					}
 					this.SendPropertyChanged("Tipo_Producto");
 				}
@@ -1143,7 +1143,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Tipo
 		{
 			get
@@ -1309,7 +1309,11 @@ namespace InnguzApp.ContextoDatos
 		
 		private string _Correo;
 		
-		private System.Nullable<System.DateTime> _Fecha_registro;
+		private string _Clave;
+		
+		private System.Data.Linq.Binary _Foto;
+		
+		private System.DateTime _Fecha_registro;
 		
 		private EntitySet<Ventas> _Ventas;
 		
@@ -1331,7 +1335,11 @@ namespace InnguzApp.ContextoDatos
     partial void OnTelefonoChanged();
     partial void OnCorreoChanging(string value);
     partial void OnCorreoChanged();
-    partial void OnFecha_registroChanging(System.Nullable<System.DateTime> value);
+    partial void OnClaveChanging(string value);
+    partial void OnClaveChanged();
+    partial void OnFotoChanging(System.Data.Linq.Binary value);
+    partial void OnFotoChanged();
+    partial void OnFecha_registroChanging(System.DateTime value);
     partial void OnFecha_registroChanged();
     #endregion
 		
@@ -1361,7 +1369,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Usuario
 		{
 			get
@@ -1381,7 +1389,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string Nombre
 		{
 			get
@@ -1401,7 +1409,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellido", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Apellido", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string Apellido
 		{
 			get
@@ -1421,7 +1429,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Posicion", DbType="VarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Posicion", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string Posicion
 		{
 			get
@@ -1441,7 +1449,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(20)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefono", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
 		public string Telefono
 		{
 			get
@@ -1461,7 +1469,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Correo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
 		public string Correo
 		{
 			get
@@ -1481,8 +1489,48 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_registro", DbType="Date")]
-		public System.Nullable<System.DateTime> Fecha_registro
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Clave", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string Clave
+		{
+			get
+			{
+				return this._Clave;
+			}
+			set
+			{
+				if ((this._Clave != value))
+				{
+					this.OnClaveChanging(value);
+					this.SendPropertyChanging();
+					this._Clave = value;
+					this.SendPropertyChanged("Clave");
+					this.OnClaveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Foto", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Foto
+		{
+			get
+			{
+				return this._Foto;
+			}
+			set
+			{
+				if ((this._Foto != value))
+				{
+					this.OnFotoChanging(value);
+					this.SendPropertyChanging();
+					this._Foto = value;
+					this.SendPropertyChanged("Foto");
+					this.OnFotoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fecha_registro", DbType="Date NOT NULL")]
+		public System.DateTime Fecha_registro
 		{
 			get
 			{
@@ -1501,7 +1549,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Ventas", Storage="_Ventas", ThisKey="Id", OtherKey="Usuario_id")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Ventas", Storage="_Ventas", ThisKey="Id", OtherKey="Producto_Servicio_id")]
 		public EntitySet<Ventas> Ventas
 		{
 			get
@@ -1557,17 +1605,19 @@ namespace InnguzApp.ContextoDatos
 		
 		private string _Descripcion;
 		
-		private System.Nullable<int> _Cantidad;
+		private int _Cantidad;
 		
-		private System.Nullable<decimal> _Monto;
+		private decimal _Monto;
 		
-		private System.Nullable<decimal> _IVA;
+		private decimal _IVA;
 		
-		private System.Nullable<decimal> _Total;
+		private decimal _Total;
 		
 		private System.Nullable<int> _Usuario_id;
 		
 		private System.Nullable<int> _Producto_Servicio_id;
+		
+		private System.Nullable<int> _periodo_id;
 		
 		private System.Nullable<System.DateTime> _FechaInserta;
 		
@@ -1576,8 +1626,6 @@ namespace InnguzApp.ContextoDatos
 		private System.Nullable<System.DateTime> _FechaActualiza;
 		
 		private string _UsuarioActualiza;
-		
-		private System.Nullable<int> _periodo_id;
 		
 		private EntityRef<Periodos> _Periodos;
 		
@@ -1593,18 +1641,20 @@ namespace InnguzApp.ContextoDatos
     partial void OnIdChanged();
     partial void OnDescripcionChanging(string value);
     partial void OnDescripcionChanged();
-    partial void OnCantidadChanging(System.Nullable<int> value);
+    partial void OnCantidadChanging(int value);
     partial void OnCantidadChanged();
-    partial void OnMontoChanging(System.Nullable<decimal> value);
+    partial void OnMontoChanging(decimal value);
     partial void OnMontoChanged();
-    partial void OnIVAChanging(System.Nullable<decimal> value);
+    partial void OnIVAChanging(decimal value);
     partial void OnIVAChanged();
-    partial void OnTotalChanging(System.Nullable<decimal> value);
+    partial void OnTotalChanging(decimal value);
     partial void OnTotalChanged();
     partial void OnUsuario_idChanging(System.Nullable<int> value);
     partial void OnUsuario_idChanged();
     partial void OnProducto_Servicio_idChanging(System.Nullable<int> value);
     partial void OnProducto_Servicio_idChanged();
+    partial void Onperiodo_idChanging(System.Nullable<int> value);
+    partial void Onperiodo_idChanged();
     partial void OnFechaInsertaChanging(System.Nullable<System.DateTime> value);
     partial void OnFechaInsertaChanged();
     partial void OnUsuarioInsertaChanging(string value);
@@ -1613,8 +1663,6 @@ namespace InnguzApp.ContextoDatos
     partial void OnFechaActualizaChanged();
     partial void OnUsuarioActualizaChanging(string value);
     partial void OnUsuarioActualizaChanged();
-    partial void Onperiodo_idChanging(System.Nullable<int> value);
-    partial void Onperiodo_idChanged();
     #endregion
 		
 		public Ventas()
@@ -1645,7 +1693,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(250)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
 		public string Descripcion
 		{
 			get
@@ -1665,8 +1713,8 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int")]
-		public System.Nullable<int> Cantidad
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int NOT NULL")]
+		public int Cantidad
 		{
 			get
 			{
@@ -1685,8 +1733,8 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto", DbType="Decimal(4,2)")]
-		public System.Nullable<decimal> Monto
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto", DbType="Decimal(4,2) NOT NULL")]
+		public decimal Monto
 		{
 			get
 			{
@@ -1705,8 +1753,8 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IVA", DbType="Decimal(4,2)")]
-		public System.Nullable<decimal> IVA
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IVA", DbType="Decimal(4,2) NOT NULL")]
+		public decimal IVA
 		{
 			get
 			{
@@ -1725,8 +1773,8 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(4,2)")]
-		public System.Nullable<decimal> Total
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(4,2) NOT NULL")]
+		public decimal Total
 		{
 			get
 			{
@@ -1756,10 +1804,6 @@ namespace InnguzApp.ContextoDatos
 			{
 				if ((this._Usuario_id != value))
 				{
-					if (this._Usuarios.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnUsuario_idChanging(value);
 					this.SendPropertyChanging();
 					this._Usuario_id = value;
@@ -1780,7 +1824,7 @@ namespace InnguzApp.ContextoDatos
 			{
 				if ((this._Producto_Servicio_id != value))
 				{
-					if (this._Productos.HasLoadedOrAssignedValue)
+					if ((this._Productos.HasLoadedOrAssignedValue || this._Usuarios.HasLoadedOrAssignedValue))
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1789,6 +1833,30 @@ namespace InnguzApp.ContextoDatos
 					this._Producto_Servicio_id = value;
 					this.SendPropertyChanged("Producto_Servicio_id");
 					this.OnProducto_Servicio_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_periodo_id", DbType="Int")]
+		public System.Nullable<int> periodo_id
+		{
+			get
+			{
+				return this._periodo_id;
+			}
+			set
+			{
+				if ((this._periodo_id != value))
+				{
+					if (this._Periodos.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onperiodo_idChanging(value);
+					this.SendPropertyChanging();
+					this._periodo_id = value;
+					this.SendPropertyChanged("periodo_id");
+					this.Onperiodo_idChanged();
 				}
 			}
 		}
@@ -1873,30 +1941,6 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_periodo_id", DbType="Int")]
-		public System.Nullable<int> periodo_id
-		{
-			get
-			{
-				return this._periodo_id;
-			}
-			set
-			{
-				if ((this._periodo_id != value))
-				{
-					if (this._Periodos.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onperiodo_idChanging(value);
-					this.SendPropertyChanging();
-					this._periodo_id = value;
-					this.SendPropertyChanged("periodo_id");
-					this.Onperiodo_idChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Periodos_Ventas", Storage="_Periodos", ThisKey="periodo_id", OtherKey="id_periodo", IsForeignKey=true)]
 		public Periodos Periodos
 		{
@@ -1965,7 +2009,7 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Ventas", Storage="_Usuarios", ThisKey="Usuario_id", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Ventas", Storage="_Usuarios", ThisKey="Producto_Servicio_id", OtherKey="Id", IsForeignKey=true)]
 		public Usuarios Usuarios
 		{
 			get
@@ -1988,11 +2032,11 @@ namespace InnguzApp.ContextoDatos
 					if ((value != null))
 					{
 						value.Ventas.Add(this);
-						this._Usuario_id = value.Id;
+						this._Producto_Servicio_id = value.Id;
 					}
 					else
 					{
-						this._Usuario_id = default(Nullable<int>);
+						this._Producto_Servicio_id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Usuarios");
 				}

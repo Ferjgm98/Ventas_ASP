@@ -7,7 +7,7 @@
 <div class="w-full h-48 bg-indigo-400 flex p-16 items-center justify-between">
     <h2 class="text-center text-2xl font-semibold pb-6 text-white">Usuarios</h2>
     <p class="self-center">
-        @Html.ActionLink("Crear Nuevo", "Create", null, new {@class = "create text-white" })
+        @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "create text-white" })
     </p>
 </div>
 
@@ -16,7 +16,7 @@
         <table class="table w-full">
             <tr class="head-table">
                 <th>
-                    @Html.DisplayNameFor(model => model.Usuario)
+                @Html.DisplayNameFor(model => model.Usuario)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Nombre)
@@ -32,6 +32,9 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Correo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Clave)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Fecha_registro)
@@ -61,6 +64,9 @@
                         @Html.DisplayFor(modelItem => item.Correo)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.Clave)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Fecha_registro)
                     </td>
                     <td>
@@ -72,6 +78,5 @@
             }
 
         </table>
-
     </div>
 </div>
