@@ -90,9 +90,10 @@ namespace InnguzApp.Controllers
 
 
                 modelo.Foto = bytes;
-                DateTime fecha = DateTime.Now;
-                modelo.Fecha_registro = fecha;
-                bd.Usuarios.InsertOnSubmit(modelo);
+                DateTime fecha = DateTime.Now;                
+                modelo.Fecha_registro = fecha;                        
+
+                bd.SP_modificar_usuario(modelo.Id,modelo.Usuario,modelo.Nombre,modelo.Apellido,modelo.Posicion,modelo.Telefono,modelo.Correo,modelo.Clave,modelo.Foto,modelo.Fecha_registro);
                 bd.SubmitChanges();
 
                 return RedirectToAction("Index");

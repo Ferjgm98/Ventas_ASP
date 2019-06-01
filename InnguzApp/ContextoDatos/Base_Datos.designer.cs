@@ -30,31 +30,25 @@ namespace InnguzApp.ContextoDatos
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnCreated();
+    partial void InsertVentas(Ventas instance);
+    partial void UpdateVentas(Ventas instance);
+    partial void DeleteVentas(Ventas instance);
+    partial void InsertUsuarios(Usuarios instance);
+    partial void UpdateUsuarios(Usuarios instance);
+    partial void DeleteUsuarios(Usuarios instance);
+    partial void InsertTipo_Producto(Tipo_Producto instance);
+    partial void UpdateTipo_Producto(Tipo_Producto instance);
+    partial void DeleteTipo_Producto(Tipo_Producto instance);
     partial void InsertCategorias(Categorias instance);
     partial void UpdateCategorias(Categorias instance);
     partial void DeleteCategorias(Categorias instance);
     partial void InsertEstados_Periodo(Estados_Periodo instance);
     partial void UpdateEstados_Periodo(Estados_Periodo instance);
     partial void DeleteEstados_Periodo(Estados_Periodo instance);
-    partial void InsertPeriodos(Periodos instance);
-    partial void UpdatePeriodos(Periodos instance);
-    partial void DeletePeriodos(Periodos instance);
-    partial void InsertProductos(Productos instance);
-    partial void UpdateProductos(Productos instance);
-    partial void DeleteProductos(Productos instance);
-    partial void InsertTipo_Producto(Tipo_Producto instance);
-    partial void UpdateTipo_Producto(Tipo_Producto instance);
-    partial void DeleteTipo_Producto(Tipo_Producto instance);
-    partial void InsertUsuarios(Usuarios instance);
-    partial void UpdateUsuarios(Usuarios instance);
-    partial void DeleteUsuarios(Usuarios instance);
-    partial void InsertVentas(Ventas instance);
-    partial void UpdateVentas(Ventas instance);
-    partial void DeleteVentas(Ventas instance);
     #endregion
 		
 		public Base_DatosDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["innguz_ventasConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["innguz_ventasConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -83,6 +77,30 @@ namespace InnguzApp.ContextoDatos
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Ventas> Ventas
+		{
+			get
+			{
+				return this.GetTable<Ventas>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Usuarios> Usuarios
+		{
+			get
+			{
+				return this.GetTable<Usuarios>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tipo_Producto> Tipo_Producto
+		{
+			get
+			{
+				return this.GetTable<Tipo_Producto>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Categorias> Categorias
 		{
 			get
@@ -99,56 +117,37 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		public System.Data.Linq.Table<Periodos> Periodos
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SP_modificar_usuario")]
+		public ISingleResult<SP_modificar_usuarioResult> SP_modificar_usuario([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> id, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string usuario, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(100)")] string nombre, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(100)")] string apellido, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(100)")] string posicion, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(20)")] string telefono, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(50)")] string correo, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarChar(30)")] string clave, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="VarBinary(MAX)")] System.Data.Linq.Binary foto, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Date")] System.Nullable<System.DateTime> fecha_registro)
 		{
-			get
-			{
-				return this.GetTable<Periodos>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Productos> Productos
-		{
-			get
-			{
-				return this.GetTable<Productos>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Tipo_Producto> Tipo_Producto
-		{
-			get
-			{
-				return this.GetTable<Tipo_Producto>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Usuarios> Usuarios
-		{
-			get
-			{
-				return this.GetTable<Usuarios>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Ventas> Ventas
-		{
-			get
-			{
-				return this.GetTable<Ventas>();
-			}
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), id, usuario, nombre, apellido, posicion, telefono, correo, clave, foto, fecha_registro);
+			return ((ISingleResult<SP_modificar_usuarioResult>)(result.ReturnValue));
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]
-	public partial class Categorias : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ventas")]
+	public partial class Ventas : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _id;
+		private int _Id;
 		
-		private string _Nombre;
+		private string _Descripcion;
+		
+		private int _Cantidad;
+		
+		private decimal _Monto;
+		
+		private decimal _IVA;
+		
+		private decimal _Total;
+		
+		private System.Nullable<int> _Usuario_id;
+		
+		private System.Nullable<int> _Producto_Servicio_id;
+		
+		private System.Nullable<int> _periodo_id;
 		
 		private System.Nullable<System.DateTime> _FechaInserta;
 		
@@ -158,16 +157,28 @@ namespace InnguzApp.ContextoDatos
 		
 		private string _UsuarioActualiza;
 		
-		private EntitySet<Productos> _Productos;
-		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnDescripcionChanging(string value);
+    partial void OnDescripcionChanged();
+    partial void OnCantidadChanging(int value);
+    partial void OnCantidadChanged();
+    partial void OnMontoChanging(decimal value);
+    partial void OnMontoChanged();
+    partial void OnIVAChanging(decimal value);
+    partial void OnIVAChanged();
+    partial void OnTotalChanging(decimal value);
+    partial void OnTotalChanged();
+    partial void OnUsuario_idChanging(System.Nullable<int> value);
+    partial void OnUsuario_idChanged();
+    partial void OnProducto_Servicio_idChanging(System.Nullable<int> value);
+    partial void OnProducto_Servicio_idChanged();
+    partial void Onperiodo_idChanging(System.Nullable<int> value);
+    partial void Onperiodo_idChanged();
     partial void OnFechaInsertaChanging(System.Nullable<System.DateTime> value);
     partial void OnFechaInsertaChanged();
     partial void OnUsuarioInsertaChanging(string value);
@@ -178,48 +189,187 @@ namespace InnguzApp.ContextoDatos
     partial void OnUsuarioActualizaChanged();
     #endregion
 		
-		public Categorias()
+		public Ventas()
 		{
-			this._Productos = new EntitySet<Productos>(new Action<Productos>(this.attach_Productos), new Action<Productos>(this.detach_Productos));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
 		{
 			get
 			{
-				return this._id;
+				return this._Id;
 			}
 			set
 			{
-				if ((this._id != value))
+				if ((this._Id != value))
 				{
-					this.OnidChanging(value);
+					this.OnIdChanging(value);
 					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Nombre
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string Descripcion
 		{
 			get
 			{
-				return this._Nombre;
+				return this._Descripcion;
 			}
 			set
 			{
-				if ((this._Nombre != value))
+				if ((this._Descripcion != value))
 				{
-					this.OnNombreChanging(value);
+					this.OnDescripcionChanging(value);
 					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
+					this._Descripcion = value;
+					this.SendPropertyChanged("Descripcion");
+					this.OnDescripcionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int NOT NULL")]
+		public int Cantidad
+		{
+			get
+			{
+				return this._Cantidad;
+			}
+			set
+			{
+				if ((this._Cantidad != value))
+				{
+					this.OnCantidadChanging(value);
+					this.SendPropertyChanging();
+					this._Cantidad = value;
+					this.SendPropertyChanged("Cantidad");
+					this.OnCantidadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto", DbType="Decimal(4,2) NOT NULL")]
+		public decimal Monto
+		{
+			get
+			{
+				return this._Monto;
+			}
+			set
+			{
+				if ((this._Monto != value))
+				{
+					this.OnMontoChanging(value);
+					this.SendPropertyChanging();
+					this._Monto = value;
+					this.SendPropertyChanged("Monto");
+					this.OnMontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IVA", DbType="Decimal(4,2) NOT NULL")]
+		public decimal IVA
+		{
+			get
+			{
+				return this._IVA;
+			}
+			set
+			{
+				if ((this._IVA != value))
+				{
+					this.OnIVAChanging(value);
+					this.SendPropertyChanging();
+					this._IVA = value;
+					this.SendPropertyChanged("IVA");
+					this.OnIVAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(4,2) NOT NULL")]
+		public decimal Total
+		{
+			get
+			{
+				return this._Total;
+			}
+			set
+			{
+				if ((this._Total != value))
+				{
+					this.OnTotalChanging(value);
+					this.SendPropertyChanging();
+					this._Total = value;
+					this.SendPropertyChanged("Total");
+					this.OnTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_id", DbType="Int")]
+		public System.Nullable<int> Usuario_id
+		{
+			get
+			{
+				return this._Usuario_id;
+			}
+			set
+			{
+				if ((this._Usuario_id != value))
+				{
+					this.OnUsuario_idChanging(value);
+					this.SendPropertyChanging();
+					this._Usuario_id = value;
+					this.SendPropertyChanged("Usuario_id");
+					this.OnUsuario_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Producto_Servicio_id", DbType="Int")]
+		public System.Nullable<int> Producto_Servicio_id
+		{
+			get
+			{
+				return this._Producto_Servicio_id;
+			}
+			set
+			{
+				if ((this._Producto_Servicio_id != value))
+				{
+					this.OnProducto_Servicio_idChanging(value);
+					this.SendPropertyChanging();
+					this._Producto_Servicio_id = value;
+					this.SendPropertyChanged("Producto_Servicio_id");
+					this.OnProducto_Servicio_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_periodo_id", DbType="Int")]
+		public System.Nullable<int> periodo_id
+		{
+			get
+			{
+				return this._periodo_id;
+			}
+			set
+			{
+				if ((this._periodo_id != value))
+				{
+					this.Onperiodo_idChanging(value);
+					this.SendPropertyChanging();
+					this._periodo_id = value;
+					this.SendPropertyChanged("periodo_id");
+					this.Onperiodo_idChanged();
 				}
 			}
 		}
@@ -304,19 +454,6 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categorias_Productos", Storage="_Productos", ThisKey="id", OtherKey="Categoria_Id")]
-		public EntitySet<Productos> Productos
-		{
-			get
-			{
-				return this._Productos;
-			}
-			set
-			{
-				this._Productos.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -335,957 +472,6 @@ namespace InnguzApp.ContextoDatos
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Productos(Productos entity)
-		{
-			this.SendPropertyChanging();
-			entity.Categorias = this;
-		}
-		
-		private void detach_Productos(Productos entity)
-		{
-			this.SendPropertyChanging();
-			entity.Categorias = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Estados_Periodo")]
-	public partial class Estados_Periodo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _estado;
-		
-		private EntitySet<Periodos> _Periodos;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnestadoChanging(string value);
-    partial void OnestadoChanged();
-    #endregion
-		
-		public Estados_Periodo()
-		{
-			this._Periodos = new EntitySet<Periodos>(new Action<Periodos>(this.attach_Periodos), new Action<Periodos>(this.detach_Periodos));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="VarChar(25) NOT NULL", CanBeNull=false)]
-		public string estado
-		{
-			get
-			{
-				return this._estado;
-			}
-			set
-			{
-				if ((this._estado != value))
-				{
-					this.OnestadoChanging(value);
-					this.SendPropertyChanging();
-					this._estado = value;
-					this.SendPropertyChanged("estado");
-					this.OnestadoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estados_Periodo_Periodos", Storage="_Periodos", ThisKey="id", OtherKey="estado")]
-		public EntitySet<Periodos> Periodos
-		{
-			get
-			{
-				return this._Periodos;
-			}
-			set
-			{
-				this._Periodos.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Periodos(Periodos entity)
-		{
-			this.SendPropertyChanging();
-			entity.Estados_Periodo = this;
-		}
-		
-		private void detach_Periodos(Periodos entity)
-		{
-			this.SendPropertyChanging();
-			entity.Estados_Periodo = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Periodos")]
-	public partial class Periodos : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id_periodo;
-		
-		private int _mes;
-		
-		private int _año;
-		
-		private int _estado;
-		
-		private System.Nullable<System.DateTime> _FechaCreacion;
-		
-		private EntitySet<Ventas> _Ventas;
-		
-		private EntityRef<Estados_Periodo> _Estados_Periodo;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void Onid_periodoChanging(int value);
-    partial void Onid_periodoChanged();
-    partial void OnmesChanging(int value);
-    partial void OnmesChanged();
-    partial void OnañoChanging(int value);
-    partial void OnañoChanged();
-    partial void OnestadoChanging(int value);
-    partial void OnestadoChanged();
-    partial void OnFechaCreacionChanging(System.Nullable<System.DateTime> value);
-    partial void OnFechaCreacionChanged();
-    #endregion
-		
-		public Periodos()
-		{
-			this._Ventas = new EntitySet<Ventas>(new Action<Ventas>(this.attach_Ventas), new Action<Ventas>(this.detach_Ventas));
-			this._Estados_Periodo = default(EntityRef<Estados_Periodo>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_periodo", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id_periodo
-		{
-			get
-			{
-				return this._id_periodo;
-			}
-			set
-			{
-				if ((this._id_periodo != value))
-				{
-					this.Onid_periodoChanging(value);
-					this.SendPropertyChanging();
-					this._id_periodo = value;
-					this.SendPropertyChanged("id_periodo");
-					this.Onid_periodoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mes", DbType="Int NOT NULL")]
-		public int mes
-		{
-			get
-			{
-				return this._mes;
-			}
-			set
-			{
-				if ((this._mes != value))
-				{
-					this.OnmesChanging(value);
-					this.SendPropertyChanging();
-					this._mes = value;
-					this.SendPropertyChanged("mes");
-					this.OnmesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_año", DbType="Int NOT NULL")]
-		public int año
-		{
-			get
-			{
-				return this._año;
-			}
-			set
-			{
-				if ((this._año != value))
-				{
-					this.OnañoChanging(value);
-					this.SendPropertyChanging();
-					this._año = value;
-					this.SendPropertyChanged("año");
-					this.OnañoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="Int NOT NULL")]
-		public int estado
-		{
-			get
-			{
-				return this._estado;
-			}
-			set
-			{
-				if ((this._estado != value))
-				{
-					if (this._Estados_Periodo.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnestadoChanging(value);
-					this.SendPropertyChanging();
-					this._estado = value;
-					this.SendPropertyChanged("estado");
-					this.OnestadoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaCreacion", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaCreacion
-		{
-			get
-			{
-				return this._FechaCreacion;
-			}
-			set
-			{
-				if ((this._FechaCreacion != value))
-				{
-					this.OnFechaCreacionChanging(value);
-					this.SendPropertyChanging();
-					this._FechaCreacion = value;
-					this.SendPropertyChanged("FechaCreacion");
-					this.OnFechaCreacionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Periodos_Ventas", Storage="_Ventas", ThisKey="id_periodo", OtherKey="periodo_id")]
-		public EntitySet<Ventas> Ventas
-		{
-			get
-			{
-				return this._Ventas;
-			}
-			set
-			{
-				this._Ventas.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Estados_Periodo_Periodos", Storage="_Estados_Periodo", ThisKey="estado", OtherKey="id", IsForeignKey=true)]
-		public Estados_Periodo Estados_Periodo
-		{
-			get
-			{
-				return this._Estados_Periodo.Entity;
-			}
-			set
-			{
-				Estados_Periodo previousValue = this._Estados_Periodo.Entity;
-				if (((previousValue != value) 
-							|| (this._Estados_Periodo.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Estados_Periodo.Entity = null;
-						previousValue.Periodos.Remove(this);
-					}
-					this._Estados_Periodo.Entity = value;
-					if ((value != null))
-					{
-						value.Periodos.Add(this);
-						this._estado = value.id;
-					}
-					else
-					{
-						this._estado = default(int);
-					}
-					this.SendPropertyChanged("Estados_Periodo");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Ventas(Ventas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Periodos = this;
-		}
-		
-		private void detach_Ventas(Ventas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Periodos = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Productos")]
-	public partial class Productos : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _Nombre;
-		
-		private string _Descripción;
-		
-		private decimal _Precio;
-		
-		private int _Tipo_Producto_Id;
-		
-		private int _Categoria_Id;
-		
-		private System.Nullable<System.DateTime> _FechaInserta;
-		
-		private string _UsuarioInserta;
-		
-		private System.Nullable<System.DateTime> _FechaActualiza;
-		
-		private string _UsuarioActualiza;
-		
-		private EntitySet<Ventas> _Ventas;
-		
-		private EntityRef<Categorias> _Categorias;
-		
-		private EntityRef<Tipo_Producto> _Tipo_Producto;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    partial void OnDescripciónChanging(string value);
-    partial void OnDescripciónChanged();
-    partial void OnPrecioChanging(decimal value);
-    partial void OnPrecioChanged();
-    partial void OnTipo_Producto_IdChanging(int value);
-    partial void OnTipo_Producto_IdChanged();
-    partial void OnCategoria_IdChanging(int value);
-    partial void OnCategoria_IdChanged();
-    partial void OnFechaInsertaChanging(System.Nullable<System.DateTime> value);
-    partial void OnFechaInsertaChanged();
-    partial void OnUsuarioInsertaChanging(string value);
-    partial void OnUsuarioInsertaChanged();
-    partial void OnFechaActualizaChanging(System.Nullable<System.DateTime> value);
-    partial void OnFechaActualizaChanged();
-    partial void OnUsuarioActualizaChanging(string value);
-    partial void OnUsuarioActualizaChanged();
-    #endregion
-		
-		public Productos()
-		{
-			this._Ventas = new EntitySet<Ventas>(new Action<Ventas>(this.attach_Ventas), new Action<Ventas>(this.detach_Ventas));
-			this._Categorias = default(EntityRef<Categorias>);
-			this._Tipo_Producto = default(EntityRef<Tipo_Producto>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this.OnNombreChanging(value);
-					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripción", DbType="VarChar(255) NOT NULL", CanBeNull=false)]
-		public string Descripción
-		{
-			get
-			{
-				return this._Descripción;
-			}
-			set
-			{
-				if ((this._Descripción != value))
-				{
-					this.OnDescripciónChanging(value);
-					this.SendPropertyChanging();
-					this._Descripción = value;
-					this.SendPropertyChanged("Descripción");
-					this.OnDescripciónChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Precio", DbType="Decimal(4,2) NOT NULL")]
-		public decimal Precio
-		{
-			get
-			{
-				return this._Precio;
-			}
-			set
-			{
-				if ((this._Precio != value))
-				{
-					this.OnPrecioChanging(value);
-					this.SendPropertyChanging();
-					this._Precio = value;
-					this.SendPropertyChanged("Precio");
-					this.OnPrecioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo_Producto_Id", DbType="Int NOT NULL")]
-		public int Tipo_Producto_Id
-		{
-			get
-			{
-				return this._Tipo_Producto_Id;
-			}
-			set
-			{
-				if ((this._Tipo_Producto_Id != value))
-				{
-					if (this._Tipo_Producto.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTipo_Producto_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Tipo_Producto_Id = value;
-					this.SendPropertyChanged("Tipo_Producto_Id");
-					this.OnTipo_Producto_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Categoria_Id", DbType="Int NOT NULL")]
-		public int Categoria_Id
-		{
-			get
-			{
-				return this._Categoria_Id;
-			}
-			set
-			{
-				if ((this._Categoria_Id != value))
-				{
-					if (this._Categorias.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCategoria_IdChanging(value);
-					this.SendPropertyChanging();
-					this._Categoria_Id = value;
-					this.SendPropertyChanged("Categoria_Id");
-					this.OnCategoria_IdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInserta", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaInserta
-		{
-			get
-			{
-				return this._FechaInserta;
-			}
-			set
-			{
-				if ((this._FechaInserta != value))
-				{
-					this.OnFechaInsertaChanging(value);
-					this.SendPropertyChanging();
-					this._FechaInserta = value;
-					this.SendPropertyChanged("FechaInserta");
-					this.OnFechaInsertaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioInserta", DbType="VarChar(50)")]
-		public string UsuarioInserta
-		{
-			get
-			{
-				return this._UsuarioInserta;
-			}
-			set
-			{
-				if ((this._UsuarioInserta != value))
-				{
-					this.OnUsuarioInsertaChanging(value);
-					this.SendPropertyChanging();
-					this._UsuarioInserta = value;
-					this.SendPropertyChanged("UsuarioInserta");
-					this.OnUsuarioInsertaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaActualiza", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaActualiza
-		{
-			get
-			{
-				return this._FechaActualiza;
-			}
-			set
-			{
-				if ((this._FechaActualiza != value))
-				{
-					this.OnFechaActualizaChanging(value);
-					this.SendPropertyChanging();
-					this._FechaActualiza = value;
-					this.SendPropertyChanged("FechaActualiza");
-					this.OnFechaActualizaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioActualiza", DbType="VarChar(50)")]
-		public string UsuarioActualiza
-		{
-			get
-			{
-				return this._UsuarioActualiza;
-			}
-			set
-			{
-				if ((this._UsuarioActualiza != value))
-				{
-					this.OnUsuarioActualizaChanging(value);
-					this.SendPropertyChanging();
-					this._UsuarioActualiza = value;
-					this.SendPropertyChanged("UsuarioActualiza");
-					this.OnUsuarioActualizaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Productos_Ventas", Storage="_Ventas", ThisKey="id", OtherKey="Producto_Servicio_id")]
-		public EntitySet<Ventas> Ventas
-		{
-			get
-			{
-				return this._Ventas;
-			}
-			set
-			{
-				this._Ventas.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Categorias_Productos", Storage="_Categorias", ThisKey="Categoria_Id", OtherKey="id", IsForeignKey=true)]
-		public Categorias Categorias
-		{
-			get
-			{
-				return this._Categorias.Entity;
-			}
-			set
-			{
-				Categorias previousValue = this._Categorias.Entity;
-				if (((previousValue != value) 
-							|| (this._Categorias.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Categorias.Entity = null;
-						previousValue.Productos.Remove(this);
-					}
-					this._Categorias.Entity = value;
-					if ((value != null))
-					{
-						value.Productos.Add(this);
-						this._Categoria_Id = value.id;
-					}
-					else
-					{
-						this._Categoria_Id = default(int);
-					}
-					this.SendPropertyChanged("Categorias");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Producto_Productos", Storage="_Tipo_Producto", ThisKey="Tipo_Producto_Id", OtherKey="id", IsForeignKey=true)]
-		public Tipo_Producto Tipo_Producto
-		{
-			get
-			{
-				return this._Tipo_Producto.Entity;
-			}
-			set
-			{
-				Tipo_Producto previousValue = this._Tipo_Producto.Entity;
-				if (((previousValue != value) 
-							|| (this._Tipo_Producto.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Tipo_Producto.Entity = null;
-						previousValue.Productos.Remove(this);
-					}
-					this._Tipo_Producto.Entity = value;
-					if ((value != null))
-					{
-						value.Productos.Add(this);
-						this._Tipo_Producto_Id = value.id;
-					}
-					else
-					{
-						this._Tipo_Producto_Id = default(int);
-					}
-					this.SendPropertyChanged("Tipo_Producto");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Ventas(Ventas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Productos = this;
-		}
-		
-		private void detach_Ventas(Ventas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Productos = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tipo_Producto")]
-	public partial class Tipo_Producto : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _Tipo;
-		
-		private System.Nullable<System.DateTime> _FechaInserta;
-		
-		private string _UsuarioInserta;
-		
-		private System.Nullable<System.DateTime> _FechaActualiza;
-		
-		private string _UsuarioActualiza;
-		
-		private EntitySet<Productos> _Productos;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnTipoChanging(string value);
-    partial void OnTipoChanged();
-    partial void OnFechaInsertaChanging(System.Nullable<System.DateTime> value);
-    partial void OnFechaInsertaChanged();
-    partial void OnUsuarioInsertaChanging(string value);
-    partial void OnUsuarioInsertaChanged();
-    partial void OnFechaActualizaChanging(System.Nullable<System.DateTime> value);
-    partial void OnFechaActualizaChanged();
-    partial void OnUsuarioActualizaChanging(string value);
-    partial void OnUsuarioActualizaChanged();
-    #endregion
-		
-		public Tipo_Producto()
-		{
-			this._Productos = new EntitySet<Productos>(new Action<Productos>(this.attach_Productos), new Action<Productos>(this.detach_Productos));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Tipo
-		{
-			get
-			{
-				return this._Tipo;
-			}
-			set
-			{
-				if ((this._Tipo != value))
-				{
-					this.OnTipoChanging(value);
-					this.SendPropertyChanging();
-					this._Tipo = value;
-					this.SendPropertyChanged("Tipo");
-					this.OnTipoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInserta", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaInserta
-		{
-			get
-			{
-				return this._FechaInserta;
-			}
-			set
-			{
-				if ((this._FechaInserta != value))
-				{
-					this.OnFechaInsertaChanging(value);
-					this.SendPropertyChanging();
-					this._FechaInserta = value;
-					this.SendPropertyChanged("FechaInserta");
-					this.OnFechaInsertaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioInserta", DbType="VarChar(50)")]
-		public string UsuarioInserta
-		{
-			get
-			{
-				return this._UsuarioInserta;
-			}
-			set
-			{
-				if ((this._UsuarioInserta != value))
-				{
-					this.OnUsuarioInsertaChanging(value);
-					this.SendPropertyChanging();
-					this._UsuarioInserta = value;
-					this.SendPropertyChanged("UsuarioInserta");
-					this.OnUsuarioInsertaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaActualiza", DbType="Date")]
-		public System.Nullable<System.DateTime> FechaActualiza
-		{
-			get
-			{
-				return this._FechaActualiza;
-			}
-			set
-			{
-				if ((this._FechaActualiza != value))
-				{
-					this.OnFechaActualizaChanging(value);
-					this.SendPropertyChanging();
-					this._FechaActualiza = value;
-					this.SendPropertyChanged("FechaActualiza");
-					this.OnFechaActualizaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioActualiza", DbType="VarChar(50)")]
-		public string UsuarioActualiza
-		{
-			get
-			{
-				return this._UsuarioActualiza;
-			}
-			set
-			{
-				if ((this._UsuarioActualiza != value))
-				{
-					this.OnUsuarioActualizaChanging(value);
-					this.SendPropertyChanging();
-					this._UsuarioActualiza = value;
-					this.SendPropertyChanged("UsuarioActualiza");
-					this.OnUsuarioActualizaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Tipo_Producto_Productos", Storage="_Productos", ThisKey="id", OtherKey="Tipo_Producto_Id")]
-		public EntitySet<Productos> Productos
-		{
-			get
-			{
-				return this._Productos;
-			}
-			set
-			{
-				this._Productos.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Productos(Productos entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tipo_Producto = this;
-		}
-		
-		private void detach_Productos(Productos entity)
-		{
-			this.SendPropertyChanging();
-			entity.Tipo_Producto = null;
 		}
 	}
 	
@@ -1315,8 +501,6 @@ namespace InnguzApp.ContextoDatos
 		
 		private System.DateTime _Fecha_registro;
 		
-		private EntitySet<Ventas> _Ventas;
-		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1345,7 +529,6 @@ namespace InnguzApp.ContextoDatos
 		
 		public Usuarios()
 		{
-			this._Ventas = new EntitySet<Ventas>(new Action<Ventas>(this.attach_Ventas), new Action<Ventas>(this.detach_Ventas));
 			OnCreated();
 		}
 		
@@ -1549,19 +732,6 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Ventas", Storage="_Ventas", ThisKey="Id", OtherKey="Producto_Servicio_id")]
-		public EntitySet<Ventas> Ventas
-		{
-			get
-			{
-				return this._Ventas;
-			}
-			set
-			{
-				this._Ventas.Assign(value);
-			}
-		}
-		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1581,43 +751,17 @@ namespace InnguzApp.ContextoDatos
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_Ventas(Ventas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuarios = this;
-		}
-		
-		private void detach_Ventas(Ventas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuarios = null;
-		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ventas")]
-	public partial class Ventas : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tipo_Producto")]
+	public partial class Tipo_Producto : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Id;
+		private int _id;
 		
-		private string _Descripcion;
-		
-		private int _Cantidad;
-		
-		private decimal _Monto;
-		
-		private decimal _IVA;
-		
-		private decimal _Total;
-		
-		private System.Nullable<int> _Usuario_id;
-		
-		private System.Nullable<int> _Producto_Servicio_id;
-		
-		private System.Nullable<int> _periodo_id;
+		private string _Tipo;
 		
 		private System.Nullable<System.DateTime> _FechaInserta;
 		
@@ -1627,34 +771,14 @@ namespace InnguzApp.ContextoDatos
 		
 		private string _UsuarioActualiza;
 		
-		private EntityRef<Periodos> _Periodos;
-		
-		private EntityRef<Productos> _Productos;
-		
-		private EntityRef<Usuarios> _Usuarios;
-		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnDescripcionChanging(string value);
-    partial void OnDescripcionChanged();
-    partial void OnCantidadChanging(int value);
-    partial void OnCantidadChanged();
-    partial void OnMontoChanging(decimal value);
-    partial void OnMontoChanged();
-    partial void OnIVAChanging(decimal value);
-    partial void OnIVAChanged();
-    partial void OnTotalChanging(decimal value);
-    partial void OnTotalChanged();
-    partial void OnUsuario_idChanging(System.Nullable<int> value);
-    partial void OnUsuario_idChanged();
-    partial void OnProducto_Servicio_idChanging(System.Nullable<int> value);
-    partial void OnProducto_Servicio_idChanged();
-    partial void Onperiodo_idChanging(System.Nullable<int> value);
-    partial void Onperiodo_idChanged();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnTipoChanging(string value);
+    partial void OnTipoChanged();
     partial void OnFechaInsertaChanging(System.Nullable<System.DateTime> value);
     partial void OnFechaInsertaChanged();
     partial void OnUsuarioInsertaChanging(string value);
@@ -1665,198 +789,47 @@ namespace InnguzApp.ContextoDatos
     partial void OnUsuarioActualizaChanged();
     #endregion
 		
-		public Ventas()
+		public Tipo_Producto()
 		{
-			this._Periodos = default(EntityRef<Periodos>);
-			this._Productos = default(EntityRef<Productos>);
-			this._Usuarios = default(EntityRef<Usuarios>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
 		{
 			get
 			{
-				return this._Id;
+				return this._id;
 			}
 			set
 			{
-				if ((this._Id != value))
+				if ((this._id != value))
 				{
-					this.OnIdChanging(value);
+					this.OnidChanging(value);
 					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripcion", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string Descripcion
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tipo", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Tipo
 		{
 			get
 			{
-				return this._Descripcion;
+				return this._Tipo;
 			}
 			set
 			{
-				if ((this._Descripcion != value))
+				if ((this._Tipo != value))
 				{
-					this.OnDescripcionChanging(value);
+					this.OnTipoChanging(value);
 					this.SendPropertyChanging();
-					this._Descripcion = value;
-					this.SendPropertyChanged("Descripcion");
-					this.OnDescripcionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Cantidad", DbType="Int NOT NULL")]
-		public int Cantidad
-		{
-			get
-			{
-				return this._Cantidad;
-			}
-			set
-			{
-				if ((this._Cantidad != value))
-				{
-					this.OnCantidadChanging(value);
-					this.SendPropertyChanging();
-					this._Cantidad = value;
-					this.SendPropertyChanged("Cantidad");
-					this.OnCantidadChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Monto", DbType="Decimal(4,2) NOT NULL")]
-		public decimal Monto
-		{
-			get
-			{
-				return this._Monto;
-			}
-			set
-			{
-				if ((this._Monto != value))
-				{
-					this.OnMontoChanging(value);
-					this.SendPropertyChanging();
-					this._Monto = value;
-					this.SendPropertyChanged("Monto");
-					this.OnMontoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IVA", DbType="Decimal(4,2) NOT NULL")]
-		public decimal IVA
-		{
-			get
-			{
-				return this._IVA;
-			}
-			set
-			{
-				if ((this._IVA != value))
-				{
-					this.OnIVAChanging(value);
-					this.SendPropertyChanging();
-					this._IVA = value;
-					this.SendPropertyChanged("IVA");
-					this.OnIVAChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Decimal(4,2) NOT NULL")]
-		public decimal Total
-		{
-			get
-			{
-				return this._Total;
-			}
-			set
-			{
-				if ((this._Total != value))
-				{
-					this.OnTotalChanging(value);
-					this.SendPropertyChanging();
-					this._Total = value;
-					this.SendPropertyChanged("Total");
-					this.OnTotalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Usuario_id", DbType="Int")]
-		public System.Nullable<int> Usuario_id
-		{
-			get
-			{
-				return this._Usuario_id;
-			}
-			set
-			{
-				if ((this._Usuario_id != value))
-				{
-					this.OnUsuario_idChanging(value);
-					this.SendPropertyChanging();
-					this._Usuario_id = value;
-					this.SendPropertyChanged("Usuario_id");
-					this.OnUsuario_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Producto_Servicio_id", DbType="Int")]
-		public System.Nullable<int> Producto_Servicio_id
-		{
-			get
-			{
-				return this._Producto_Servicio_id;
-			}
-			set
-			{
-				if ((this._Producto_Servicio_id != value))
-				{
-					if ((this._Productos.HasLoadedOrAssignedValue || this._Usuarios.HasLoadedOrAssignedValue))
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProducto_Servicio_idChanging(value);
-					this.SendPropertyChanging();
-					this._Producto_Servicio_id = value;
-					this.SendPropertyChanged("Producto_Servicio_id");
-					this.OnProducto_Servicio_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_periodo_id", DbType="Int")]
-		public System.Nullable<int> periodo_id
-		{
-			get
-			{
-				return this._periodo_id;
-			}
-			set
-			{
-				if ((this._periodo_id != value))
-				{
-					if (this._Periodos.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onperiodo_idChanging(value);
-					this.SendPropertyChanging();
-					this._periodo_id = value;
-					this.SendPropertyChanged("periodo_id");
-					this.Onperiodo_idChanged();
+					this._Tipo = value;
+					this.SendPropertyChanged("Tipo");
+					this.OnTipoChanged();
 				}
 			}
 		}
@@ -1941,104 +914,184 @@ namespace InnguzApp.ContextoDatos
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Periodos_Ventas", Storage="_Periodos", ThisKey="periodo_id", OtherKey="id_periodo", IsForeignKey=true)]
-		public Periodos Periodos
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categorias")]
+	public partial class Categorias : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _Nombre;
+		
+		private System.Nullable<System.DateTime> _FechaInserta;
+		
+		private string _UsuarioInserta;
+		
+		private System.Nullable<System.DateTime> _FechaActualiza;
+		
+		private string _UsuarioActualiza;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnFechaInsertaChanging(System.Nullable<System.DateTime> value);
+    partial void OnFechaInsertaChanged();
+    partial void OnUsuarioInsertaChanging(string value);
+    partial void OnUsuarioInsertaChanged();
+    partial void OnFechaActualizaChanging(System.Nullable<System.DateTime> value);
+    partial void OnFechaActualizaChanged();
+    partial void OnUsuarioActualizaChanging(string value);
+    partial void OnUsuarioActualizaChanged();
+    #endregion
+		
+		public Categorias()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
 		{
 			get
 			{
-				return this._Periodos.Entity;
+				return this._id;
 			}
 			set
 			{
-				Periodos previousValue = this._Periodos.Entity;
-				if (((previousValue != value) 
-							|| (this._Periodos.HasLoadedOrAssignedValue == false)))
+				if ((this._id != value))
 				{
+					this.OnidChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Periodos.Entity = null;
-						previousValue.Ventas.Remove(this);
-					}
-					this._Periodos.Entity = value;
-					if ((value != null))
-					{
-						value.Ventas.Add(this);
-						this._periodo_id = value.id_periodo;
-					}
-					else
-					{
-						this._periodo_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Periodos");
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Productos_Ventas", Storage="_Productos", ThisKey="Producto_Servicio_id", OtherKey="id", IsForeignKey=true)]
-		public Productos Productos
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nombre
 		{
 			get
 			{
-				return this._Productos.Entity;
+				return this._Nombre;
 			}
 			set
 			{
-				Productos previousValue = this._Productos.Entity;
-				if (((previousValue != value) 
-							|| (this._Productos.HasLoadedOrAssignedValue == false)))
+				if ((this._Nombre != value))
 				{
+					this.OnNombreChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Productos.Entity = null;
-						previousValue.Ventas.Remove(this);
-					}
-					this._Productos.Entity = value;
-					if ((value != null))
-					{
-						value.Ventas.Add(this);
-						this._Producto_Servicio_id = value.id;
-					}
-					else
-					{
-						this._Producto_Servicio_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Productos");
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Ventas", Storage="_Usuarios", ThisKey="Producto_Servicio_id", OtherKey="Id", IsForeignKey=true)]
-		public Usuarios Usuarios
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaInserta", DbType="Date")]
+		public System.Nullable<System.DateTime> FechaInserta
 		{
 			get
 			{
-				return this._Usuarios.Entity;
+				return this._FechaInserta;
 			}
 			set
 			{
-				Usuarios previousValue = this._Usuarios.Entity;
-				if (((previousValue != value) 
-							|| (this._Usuarios.HasLoadedOrAssignedValue == false)))
+				if ((this._FechaInserta != value))
 				{
+					this.OnFechaInsertaChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Usuarios.Entity = null;
-						previousValue.Ventas.Remove(this);
-					}
-					this._Usuarios.Entity = value;
-					if ((value != null))
-					{
-						value.Ventas.Add(this);
-						this._Producto_Servicio_id = value.Id;
-					}
-					else
-					{
-						this._Producto_Servicio_id = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Usuarios");
+					this._FechaInserta = value;
+					this.SendPropertyChanged("FechaInserta");
+					this.OnFechaInsertaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioInserta", DbType="VarChar(50)")]
+		public string UsuarioInserta
+		{
+			get
+			{
+				return this._UsuarioInserta;
+			}
+			set
+			{
+				if ((this._UsuarioInserta != value))
+				{
+					this.OnUsuarioInsertaChanging(value);
+					this.SendPropertyChanging();
+					this._UsuarioInserta = value;
+					this.SendPropertyChanged("UsuarioInserta");
+					this.OnUsuarioInsertaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FechaActualiza", DbType="Date")]
+		public System.Nullable<System.DateTime> FechaActualiza
+		{
+			get
+			{
+				return this._FechaActualiza;
+			}
+			set
+			{
+				if ((this._FechaActualiza != value))
+				{
+					this.OnFechaActualizaChanging(value);
+					this.SendPropertyChanging();
+					this._FechaActualiza = value;
+					this.SendPropertyChanged("FechaActualiza");
+					this.OnFechaActualizaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsuarioActualiza", DbType="VarChar(50)")]
+		public string UsuarioActualiza
+		{
+			get
+			{
+				return this._UsuarioActualiza;
+			}
+			set
+			{
+				if ((this._UsuarioActualiza != value))
+				{
+					this.OnUsuarioActualizaChanging(value);
+					this.SendPropertyChanging();
+					this._UsuarioActualiza = value;
+					this.SendPropertyChanged("UsuarioActualiza");
+					this.OnUsuarioActualizaChanged();
 				}
 			}
 		}
@@ -2060,6 +1113,118 @@ namespace InnguzApp.ContextoDatos
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Estados_Periodo")]
+	public partial class Estados_Periodo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _estado;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnestadoChanging(string value);
+    partial void OnestadoChanged();
+    #endregion
+		
+		public Estados_Periodo()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="VarChar(25) NOT NULL", CanBeNull=false)]
+		public string estado
+		{
+			get
+			{
+				return this._estado;
+			}
+			set
+			{
+				if ((this._estado != value))
+				{
+					this.OnestadoChanging(value);
+					this.SendPropertyChanging();
+					this._estado = value;
+					this.SendPropertyChanged("estado");
+					this.OnestadoChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class SP_modificar_usuarioResult
+	{
+		
+		private string _Mensaje;
+		
+		public SP_modificar_usuarioResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mensaje", DbType="VarChar(31) NOT NULL", CanBeNull=false)]
+		public string Mensaje
+		{
+			get
+			{
+				return this._Mensaje;
+			}
+			set
+			{
+				if ((this._Mensaje != value))
+				{
+					this._Mensaje = value;
+				}
 			}
 		}
 	}
