@@ -77,7 +77,7 @@ namespace InnguzApp.Controllers
 
         // POST: Usuarios/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection, Usuarios modelo, HttpPostedFile Photo)
+        public ActionResult Edit(int id, FormCollection collection, Usuarios modelo, HttpPostedFileBase Photo)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace InnguzApp.Controllers
                 DateTime fecha = DateTime.Now;                
                 modelo.Fecha_registro = fecha;                        
 
-                bd.SP_modificar_usuario(modelo.Id,modelo.Usuario,modelo.Nombre,modelo.Apellido,modelo.Posicion,modelo.Telefono,modelo.Correo,modelo.Clave,modelo.Foto,modelo.Fecha_registro);
+                bd.SP_modificar_usuario(modelo.Id,modelo.Usuario,modelo.Nombre,modelo.Apellido,modelo.Posicion,modelo.Telefono,modelo.Correo,modelo.Clave,modelo.Foto);
                 bd.SubmitChanges();
 
                 return RedirectToAction("Index");

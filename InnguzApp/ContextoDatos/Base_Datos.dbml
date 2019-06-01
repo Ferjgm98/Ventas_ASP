@@ -1,5 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="innguz_ventas" Class="Base_DatosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-RFMHOQ2\SQLEXPRESS;Initial Catalog=innguz_ventas;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="innguz_ventasConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=localhost;Initial Catalog=innguz_ventas;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="innguz_ventasConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Categorias" Member="Categorias">
+    <Type Name="Categorias">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaInserta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UsuarioInserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaActualiza" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UsuarioActualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Categorias_Productos" Member="Productos" ThisKey="id" OtherKey="Categoria_Id" Type="Productos" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Estados_Periodo" Member="Estados_Periodo">
+    <Type Name="Estados_Periodo">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="estado" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Association Name="Estados_Periodo_Periodos" Member="Periodos" ThisKey="id" OtherKey="estado" Type="Periodos" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Periodos" Member="Periodos">
+    <Type Name="Periodos">
+      <Column Name="id_periodo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="mes" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="año" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="estado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FechaCreacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Periodos_Ventas" Member="Ventas" ThisKey="id_periodo" OtherKey="periodo_id" Type="Ventas" />
+      <Association Name="Estados_Periodo_Periodos" Member="Estados_Periodo" ThisKey="estado" OtherKey="id" Type="Estados_Periodo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Productos" Member="Productos">
+    <Type Name="Productos">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripción" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Precio" Type="System.Decimal" DbType="Decimal(4,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Tipo_Producto_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Categoria_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FechaInserta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UsuarioInserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaActualiza" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UsuarioActualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Productos_Ventas" Member="Ventas" ThisKey="id" OtherKey="Producto_Servicio_id" Type="Ventas" />
+      <Association Name="Categorias_Productos" Member="Categorias" ThisKey="Categoria_Id" OtherKey="id" Type="Categorias" IsForeignKey="true" />
+      <Association Name="Tipo_Producto_Productos" Member="Tipo_Producto" ThisKey="Tipo_Producto_Id" OtherKey="id" Type="Tipo_Producto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tipo_Producto" Member="Tipo_Producto">
+    <Type Name="Tipo_Producto">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaInserta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UsuarioInserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaActualiza" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UsuarioActualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Tipo_Producto_Productos" Member="Productos" ThisKey="id" OtherKey="Tipo_Producto_Id" Type="Productos" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuarios" Member="Usuarios">
+    <Type Name="Usuarios">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellido" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Posicion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Clave" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Foto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Fecha_registro" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Usuarios_Ventas" Member="Ventas" ThisKey="Id" OtherKey="Producto_Servicio_id" Type="Ventas" />
+    </Type>
+  </Table>
   <Table Name="dbo.Ventas" Member="Ventas">
     <Type Name="Ventas">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -15,46 +87,9 @@
       <Column Name="UsuarioInserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="FechaActualiza" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="UsuarioActualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Usuarios" Member="Usuarios">
-    <Type Name="Usuarios">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Apellido" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Posicion" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Telefono" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="Correo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Clave" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="Foto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="Fecha_registro" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Tipo_Producto" Member="Tipo_Producto">
-    <Type Name="Tipo_Producto">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="FechaInserta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="UsuarioInserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FechaActualiza" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="UsuarioActualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Categorias" Member="Categorias">
-    <Type Name="Categorias">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="FechaInserta" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="UsuarioInserta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="FechaActualiza" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="UsuarioActualiza" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Estados_Periodo" Member="Estados_Periodo">
-    <Type Name="Estados_Periodo">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="estado" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
+      <Association Name="Periodos_Ventas" Member="Periodos" ThisKey="periodo_id" OtherKey="id_periodo" Type="Periodos" IsForeignKey="true" />
+      <Association Name="Productos_Ventas" Member="Productos" ThisKey="Producto_Servicio_id" OtherKey="id" Type="Productos" IsForeignKey="true" />
+      <Association Name="Usuarios_Ventas" Member="Usuarios" ThisKey="Producto_Servicio_id" OtherKey="Id" Type="Usuarios" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.SP_modificar_usuario" Method="SP_modificar_usuario">
@@ -67,7 +102,6 @@
     <Parameter Name="correo" Type="System.String" DbType="VarChar(50)" />
     <Parameter Name="clave" Type="System.String" DbType="VarChar(30)" />
     <Parameter Name="foto" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" />
-    <Parameter Name="fecha_registro" Type="System.DateTime" DbType="Date" />
     <ElementType Name="SP_modificar_usuarioResult">
       <Column Name="Mensaje" Type="System.String" DbType="VarChar(31) NOT NULL" CanBeNull="false" />
     </ElementType>
