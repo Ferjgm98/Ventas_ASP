@@ -12,6 +12,10 @@ input:active{
     outline: none;
 }
 
+input, button {
+    outline: none;
+}
+
 .lateral-nav {
     box-shadow: 4px 0px 10px rgba(51, 51, 51, 0.50);
     height: 100vh;

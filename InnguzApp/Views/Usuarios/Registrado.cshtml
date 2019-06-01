@@ -1,0 +1,51 @@
+﻿@model InnguzApp.ContextoDatos.Usuarios
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Registrado";
+}
+
+
+<div class="w-full h-48 bg-indigo-400 flex p-16 items-center justify-between">
+    <div>
+        <div>
+            <a href="@Url.Action("Index")" class="text-white text-2xl">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+
+        <h2 class="text-center text-2xl font-semibold pb-2 text-white">Usuario registrado con éxito</h2>
+        @Html.ActionLink("Editar", "Edit", new { id = @Html.DisplayFor(model => model.Id) }, new { @class = "text-white pb-6" })
+    </div>
+</div>
+
+<div class="flex flex-wrap p-2 md:p-16">
+    <div class="w-full">
+        <h2 class="w-full md:w-1/2 font-bold text-3xl">Las credenciales de acceso para el usuario son las siguientes</h2>
+    </div>
+    <div class="w-full lg:w-1/3 flex justify-center items-center p-4 py-16">
+        <img src="data:image;base64,@ViewBag.foto" class="self-center rounded-full object-cover w-64 h-64 border-solid border-4 border-indigo-400" />
+    </div>
+
+    <div class="w-full lg:w-2/3 flex flex-col justify-center lg:pl-0">
+        <div class="p-2">
+            <div class="text-2xl text-center lg:text-left font-semibold">
+                @Html.DisplayNameFor(model => model.Usuario)
+            </div>
+            <div class="text-2xl text-center lg:text-left text-gray-600">
+                @Html.DisplayFor(model => model.Usuario)
+            </div>
+        </div>
+        <div class="p-2">
+            <div class="text-2xl text-center lg:text-left font-semibold">
+                Contraseña
+            </div>
+
+            <div class="text-2xl text-center lg:text-left text-gray-600">
+                @Html.DisplayFor(model => model.Clave)
+            </div>
+        </div>
+    </div>
+</div>

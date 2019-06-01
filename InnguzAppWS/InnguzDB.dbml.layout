@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="InnguzDB">
+  <DataContextMoniker Name="/InnguzDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="c3c01036-3e9f-49c9-951f-4f257f0ee462" absoluteBounds="3.5, 0.625, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/InnguzDBDataContext/Usuarios" />
+      <nestedChildShapes>
+        <elementListCompartment Id="28964d68-bbe9-4c23-b8ff-94e23349581c" absoluteBounds="3.515, 1.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

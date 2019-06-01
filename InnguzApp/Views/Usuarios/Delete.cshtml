@@ -1,0 +1,115 @@
+﻿@model InnguzApp.ContextoDatos.Usuarios
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<div class="w-full h-48 bg-indigo-400 flex p-16 items-center justify-between">
+    <div>
+        <div>
+            <a href="@Url.Action("Index")" class="text-white text-2xl">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+
+        <h2 class="text-2xl font-semibold pb-2 text-white">Eliminar: @Html.DisplayFor(model => model.Nombre) @Html.DisplayFor(model => model.Apellido)</h2>
+    </div>
+</div>
+
+<div>
+
+    <div class="flex flex-wrap p-2 md:p-16">
+        <div class="w-full lg:w-1/3 flex justify-center items-center p-4 py-16">
+            <img src="data:image;base64,@ViewBag.foto" class="self-center rounded-full object-cover w-64 h-64 border-solid border-4 border-indigo-400" />
+        </div>
+
+        <div class="w-full lg:w-2/3 flex flex-wrap justify-center items-center lg:pl-0">
+            <div class="lg:w-1/2 px-4">
+                <div class="p-2">
+                    <div class="text-base  font-semibold">
+                        @Html.DisplayNameFor(model => model.Usuario)
+                    </div>
+                    <div class="">
+                        @Html.DisplayFor(model => model.Usuario)
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="text-base font-semibold">
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </div>
+
+                    <div class="">
+                        @Html.DisplayFor(model => model.Nombre)
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="font-semibold">
+                        @Html.DisplayNameFor(model => model.Apellido)
+                    </div>
+
+                    <div>
+                        @Html.DisplayFor(model => model.Apellido)
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="font-semibold">
+                        Posición
+                    </div>
+
+                    <div>
+                        @Html.DisplayFor(model => model.Posicion)
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-1/2 px-4">
+                <div class="p-2">
+                    <div class="font-semibold">
+                        Teléfono
+                    </div>
+
+                    <div>
+                        @Html.DisplayFor(model => model.Telefono)
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="font-semibold">
+                        @Html.DisplayNameFor(model => model.Correo)
+                    </div>
+
+                    <div>
+                        @Html.DisplayFor(model => model.Correo)
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="font-semibold">
+                        @Html.DisplayNameFor(model => model.Clave)
+                    </div>
+
+                    <div>
+                        @Html.DisplayFor(model => model.Clave)
+                    </div>
+                </div>
+                <div class="p-2">
+                    <div class="font-semibold">
+                        Fecha de registro
+                    </div>
+
+                    <div>
+                        @Html.DisplayFor(model => model.Fecha_registro)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="px-2 md:px-16">
+            <h3 class="text-2xl font-bold py-2 text-black">¿Estás seguro que quieres eliminar este usuario?</h3>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

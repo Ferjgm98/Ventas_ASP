@@ -86,7 +86,10 @@
                     </div>
 
                     <div>
-                        @Html.DisplayFor(model => model.Clave)
+                        <span id="pass-container">
+                            @Html.EditorFor(model => model.Clave, new { htmlAttributes = new {@class="w-5/6 lg:w-1/2", placeholder="Password", Type="password", @readonly = "readonly"  } }) 
+                        </span>
+                        <button class="ml-2" id="showPass"><i class="fas fa-eye"></i></button>
                     </div>
                 </div>
                 <div class="p-2">
@@ -101,6 +104,4 @@
             </div>
         </div>
     </div>
-    <dl class="dl-horizontal">
-    </dl>
 </div>
