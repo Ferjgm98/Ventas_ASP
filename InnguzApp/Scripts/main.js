@@ -34,3 +34,13 @@ menuItemsArray.forEach(function (item, index) {
     }
 });
 
+
+
+// Actualizar foto
+
+var photo = document.getElementById('photo');
+photo.addEventListener('change', function (e) {
+    var view = document.querySelector('.photo-view');
+
+    view.src = URL.createObjectURL(photo.files[0]);
+})

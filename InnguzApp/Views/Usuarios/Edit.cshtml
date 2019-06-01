@@ -1,7 +1,7 @@
 ﻿@model InnguzApp.ContextoDatos.Usuarios
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Editar";
 }
 
 <div class="w-full h-48 bg-indigo-400 flex p-16 items-center justify-between">
@@ -9,7 +9,8 @@
         <a href="@Url.Action("Index")" class="text-white text-2xl">
             <i class="fas fa-arrow-left"></i>
         </a>
-        <h2 class="text-center text-2xl font-semibold pb-6 text-white">Crear usuario</h2>
+
+        <h2 class="text-center text-2xl font-semibold pb-6 text-white">Editar: @Html.DisplayFor(model => model.Nombre) @Html.DisplayFor(model => model.Apellido)</h2>
     </div>
 </div>
 
@@ -19,6 +20,8 @@
 
     <div class="form-horizontal p-4 md:p-16 w-4/5 lg:w-2/3 mx-auto">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
         <div class="form-group">
             @Html.LabelFor(model => model.Usuario, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -76,18 +79,34 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Fecha_registro, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" id="photo" name="photo"/>
+                @Html.EditorFor(model => model.Fecha_registro, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Fecha_registro, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+                Foto
+            <div class="col-md-10">
+                <img src="data:image;base64,@ViewBag.foto" class="photo-view self-center rounded-full object-cover w-64 h-64 border-solid border-4 border-indigo-400" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="file" name="photo" id="photo"/>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default"/>
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

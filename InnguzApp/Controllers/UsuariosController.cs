@@ -69,16 +69,31 @@ namespace InnguzApp.Controllers
         // GET: Usuarios/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var usuario = (from u in bd.Usuarios where u.Id == id select u).Single();
+            var to64 = Convert.ToBase64String(usuario.Foto.ToArray());
+            ViewBag.foto = to64;
+            return View(usuario);
         }
 
         // POST: Usuarios/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection, Usuarios modelo, HttpPostedFile Photo)
         {
             try
             {
-                // TODO: Add update logic here
+                string name = Path.GetFileName(Photo.FileName);
+                string extension = Path.GetExtension(name);
+                int size = Photo.ContentLength;
+                Stream stream = Photo.InputStream;
+                BinaryReader binaryReader = new BinaryReader(stream);
+                byte[] bytes = binaryReader.ReadBytes((int)stream.Length);
+
+
+                modelo.Foto = bytes;
+                DateTime fecha = DateTime.Now;
+                modelo.Fecha_registro = fecha;
+                bd.Usuarios.InsertOnSubmit(modelo);
+                bd.SubmitChanges();
 
                 return RedirectToAction("Index");
             }
