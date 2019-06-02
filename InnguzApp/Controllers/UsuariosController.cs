@@ -110,7 +110,7 @@ namespace InnguzApp.Controllers
                 ViewBag.clave = modelo.Clave;
                 ViewBag.foto = modelo.Foto;
 
-                var user = (from u in bd.Usuarios where u.Correo == modelo.Correo select u.Id).Single(); 
+                var user = (from u in bd.Usuarios where u.Usuario == modelo.Usuario && u.Clave == modelo.Clave select u.Id).Single(); 
 
                 return RedirectToAction("Registrado", new { id = user });
             }

@@ -114,4 +114,12 @@ BEGIN
 	UPDATE Tipo_Producto SET tipo = @tipo, UsuarioActualiza = @usuarioActualiza, FechaActualiza = GETDATE() WHERE id = @id
 END
 
+CREATE PROCEDURE SP_ActualizarCategorias
+	@id int,
+	@nombre varchar(50),
+	@usuarioActualiza varchar(50)
+AS
+BEGIN
+	UPDATE Categorias SET Nombre = @nombre, UsuarioActualiza = @usuarioActualiza, FechaActualiza = GETDATE() WHERE id = @id
+END
 select * from Usuarios

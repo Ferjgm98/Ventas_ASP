@@ -112,4 +112,10 @@
     <Parameter Name="usuarioActualiza" Type="System.String" DbType="VarChar(50)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.SP_ActualizarCategorias" Method="SP_ActualizarCategorias">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="usuarioActualiza" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

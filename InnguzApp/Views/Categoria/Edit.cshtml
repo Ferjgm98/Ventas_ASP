@@ -1,4 +1,4 @@
-﻿@model InnguzApp.ContextoDatos.Tipo_Producto
+﻿@model InnguzApp.ContextoDatos.Categorias
 
 @{
     ViewBag.Title = "Edit";
@@ -10,7 +10,7 @@
             <i class="fas fa-arrow-left"></i>
         </a>
 
-        <h2 class="text-center text-2xl font-semibold pb-6 text-white">Editar: @Html.DisplayFor(model => model.Tipo)</h2>
+        <h2 class="text-center text-2xl font-semibold pb-6 text-white">Editar: @Html.DisplayFor(model => model.Nombre)</h2>
     </div>
 </div>
 
@@ -24,23 +24,22 @@
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Tipo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
             </div>
         </div>
-       
+
+
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Actualizar" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
-
-<div>
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
