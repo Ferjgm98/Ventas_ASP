@@ -4,18 +4,18 @@
     ViewBag.Title = "Detalles";
 }
 
-    <div class="w-full h-48 bg-indigo-400 flex p-16 items-center justify-between">
+<div class="w-full h-48 bg-indigo-400 flex p-16 items-center justify-between">
+    <div>
         <div>
-            <div>
-                <a href="@Url.Action("Index")" class="text-white text-2xl">
-                    <i class="fas fa-arrow-left"></i>
-                </a>
-            </div>
-
-            <h2 class="text-center text-2xl font-semibold pb-2 text-white">Detalles: @Html.DisplayFor(model => model.Nombre) @Html.DisplayFor(model => model.Apellido)</h2>
-            @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "text-white pb-6" })
+            <a href="@Url.Action("Index")" class="text-white text-2xl">
+                <i class="fas fa-arrow-left"></i>
+            </a>
         </div>
+
+        <h2 class="text-center text-2xl font-semibold pb-2 text-white">Detalles: @Html.DisplayFor(model => model.Nombre) @Html.DisplayFor(model => model.Apellido)</h2>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.Id }, new { @class = "text-white pb-6" })
     </div>
+</div>
 
 <div>
 

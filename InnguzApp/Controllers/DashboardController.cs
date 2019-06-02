@@ -11,6 +11,10 @@ namespace InnguzApp.Controllers
         // GET: Dashboard
         public ActionResult Index()
         {
+            if (Session["login"] == null)
+            {
+                return Redirect("~/Login/Login");
+            }
             return View();
         }
 

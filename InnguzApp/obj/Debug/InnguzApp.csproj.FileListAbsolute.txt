@@ -206,3 +206,9 @@ C:\Users\FxPhantomhive\Desktop\proyecto progra2\InnguzApp\obj\Debug\InnguzApp.cs
 C:\Users\FxPhantomhive\Desktop\proyecto progra2\InnguzApp\obj\Debug\InnguzApp.csproj.CopyComplete
 C:\Users\FxPhantomhive\Desktop\proyecto progra2\InnguzApp\obj\Debug\InnguzApp.dll
 C:\Users\FxPhantomhive\Desktop\proyecto progra2\InnguzApp\obj\Debug\InnguzApp.pdb
+C:\Users\Fernando\source\repos\InnguzApp\InnguzApp\bin\System.Net.Http.Formatting.dll
+C:\Users\Fernando\source\repos\InnguzApp\InnguzApp\bin\System.Web.Http.dll
+C:\Users\Fernando\source\repos\InnguzApp\InnguzApp\bin\System.Web.Http.WebHost.dll
+C:\Users\Fernando\source\repos\InnguzApp\InnguzApp\bin\System.Net.Http.Formatting.xml
+C:\Users\Fernando\source\repos\InnguzApp\InnguzApp\bin\System.Web.Http.xml
+C:\Users\Fernando\source\repos\InnguzApp\InnguzApp\bin\System.Web.Http.WebHost.xml
