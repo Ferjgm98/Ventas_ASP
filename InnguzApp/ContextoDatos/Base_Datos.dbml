@@ -106,4 +106,10 @@
       <Column Name="Mensaje" Type="System.String" DbType="VarChar(31) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
+  <Function Name="dbo.SP_ActualizarTipoProdcuto" Method="SP_ActualizarTipoProdcuto">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="tipo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="usuarioActualiza" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

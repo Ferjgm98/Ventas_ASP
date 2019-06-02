@@ -53,13 +53,16 @@ if (photo) {
 var password = document.querySelector('#pass-container input');
 
 var showPassButton = document.querySelector('#showPass');
-showPassButton.addEventListener('click', function () {
-    console.log('test');
-    if (password.type === "password") {
-        showPassButton.parentNode.classList.add("text-indigo-600")
-        password.type = 'text';
-    } else if (password.type === "text") {
-        showPassButton.parentNode.classList.remove("text-indigo-600")
-        password.type = 'password';
-    }
-});
+
+if (password) {
+    showPassButton.addEventListener('click', function () {
+        console.log('test');
+        if (password.type === "password") {
+            showPassButton.parentNode.classList.add("text-indigo-600")
+            password.type = 'text';
+        } else if (password.type === "text") {
+            showPassButton.parentNode.classList.remove("text-indigo-600")
+            password.type = 'password';
+        }
+    });
+}

@@ -33,6 +33,11 @@ namespace InnguzApp.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
+            if(Session["login"] == null)
+            {
+                return Redirect("~/Login/Login");
+            }
+
             IEnumerable<Usuarios> Lista = (from u in bd.Usuarios select u).ToList();
             return View(Lista);
         }
@@ -40,6 +45,10 @@ namespace InnguzApp.Controllers
         // GET: Usuarios/Details/5
         public ActionResult Details(int id)
         {
+            if (Session["login"] == null)
+            {
+                return Redirect("~/Login/Login");
+            }
             var usuario = (from u in bd.Usuarios where u.Id == id select u).Single();
             var to64 = Convert.ToBase64String(usuario.Foto.ToArray());
             ViewBag.foto = to64;
@@ -49,6 +58,11 @@ namespace InnguzApp.Controllers
         // GET: Usuarios/Registrado/id
         public ActionResult Registrado(int id)
         {
+            if (Session["login"] == null)
+            {
+                return Redirect("~/Login/Login");
+            }
+
             var usuario = (from u in bd.Usuarios where u.Id == id select u).Single();
             var to64 = Convert.ToBase64String(usuario.Foto.ToArray());
             ViewBag.foto = to64;
@@ -58,6 +72,11 @@ namespace InnguzApp.Controllers
         // GET: Usuarios/Create
         public ActionResult Create()
         {
+            if (Session["login"] == null)
+            {
+                return Redirect("~/Login/Login");
+            }
+
             return View();
         }
 
@@ -104,6 +123,10 @@ namespace InnguzApp.Controllers
         // GET: Usuarios/Edit/5
         public ActionResult Edit(int id)
         {
+            if (Session["login"] == null)
+            {
+                return Redirect("~/Login/Login");
+            }
             var usuario = (from u in bd.Usuarios where u.Id == id select u).Single();
             var to64 = Convert.ToBase64String(usuario.Foto.ToArray());
             ViewBag.foto = to64;
@@ -148,6 +171,10 @@ namespace InnguzApp.Controllers
         // GET: Usuarios/Delete/5
         public ActionResult Delete(int id)
         {
+            if (Session["login"] == null)
+            {
+                return Redirect("~/Login/Login");
+            }
             var usuario = (from u in bd.Usuarios where u.Id == id select u).Single();
             var to64 = Convert.ToBase64String(usuario.Foto.ToArray());
             ViewBag.foto = to64;

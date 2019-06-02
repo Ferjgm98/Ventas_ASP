@@ -26,8 +26,11 @@ namespace InnguzAppWS
                                 select u).Single();
                 Login = new LoginUser()
                          {
+                             id_user = consulta.Id,
                              usuario = consulta.Usuario,
-                             clave = consulta.Clave
+                             clave = consulta.Clave,
+                             nombre = consulta.Nombre,
+                             apellido = consulta.Apellido,
                          };
                 return Login;
             } catch

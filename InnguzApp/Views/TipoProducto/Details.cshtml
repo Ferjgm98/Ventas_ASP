@@ -1,0 +1,68 @@
+﻿@model InnguzApp.ContextoDatos.Tipo_Producto
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<div class="w-full h-48 bg-indigo-400 flex p-16 items-center justify-between">
+    <div>
+        <div>
+            <a href="@Url.Action("Index")" class="text-white text-2xl">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+
+        <h2 class="text-center text-2xl font-semibold pb-2 text-white">Detalles: @Html.DisplayFor(model => model.Tipo)</h2>
+        @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "text-white pb-6" })
+    </div>
+</div>
+
+<div>
+    <div class="w-full p-2 md:p-16" >
+        <div class="p-2">
+            <div class="text-base  font-semibold">
+                @Html.DisplayNameFor(model => model.Tipo)
+            </div>
+            <div class="">
+                @Html.DisplayFor(model => model.Tipo)
+            </div>
+        </div>
+        <div class="p-2">
+            <div class="text-base font-semibold">
+                Registrado por
+            </div>
+
+            <div class="">
+                @Html.DisplayFor(model => model.UsuarioInserta)
+            </div>
+        </div>
+        <div class="p-2">
+            <div class="font-semibold">
+                Registrado en
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.FechaInserta)
+            </div>
+        </div>
+        <div class="p-2">
+            <div class="font-semibold">
+                Ultima actualización por
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.UsuarioActualiza)
+            </div>
+        </div>        
+        <div class="p-2">
+            <div class="font-semibold">
+                Ultima actualización el
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.FechaActualiza)
+            </div>
+        </div>
+    </div>
+   
+</div>

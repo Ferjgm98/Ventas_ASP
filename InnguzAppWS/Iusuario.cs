@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
@@ -23,10 +22,19 @@ namespace InnguzAppWS
     public class LoginUser
     {
         [DataMember]
+        public int id_user { get; set; }
+        [DataMember]
         public string usuario { get; set; }
 
         [DataMember]
         public string clave { get; set; }
+
+        [DataMember]
+        public string nombre { get; set; }
+
+        [DataMember]
+        public string apellido { get; set; }
+
 
     }
 }

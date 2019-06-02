@@ -23,7 +23,16 @@ namespace InnguzApp.InnguzWC {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string apellidoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string claveField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int id_userField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nombreField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string usuarioField;
@@ -39,6 +48,19 @@ namespace InnguzApp.InnguzWC {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string apellido {
+            get {
+                return this.apellidoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.apellidoField, value) != true)) {
+                    this.apellidoField = value;
+                    this.RaisePropertyChanged("apellido");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string clave {
             get {
                 return this.claveField;
@@ -47,6 +69,32 @@ namespace InnguzApp.InnguzWC {
                 if ((object.ReferenceEquals(this.claveField, value) != true)) {
                     this.claveField = value;
                     this.RaisePropertyChanged("clave");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int id_user {
+            get {
+                return this.id_userField;
+            }
+            set {
+                if ((this.id_userField.Equals(value) != true)) {
+                    this.id_userField = value;
+                    this.RaisePropertyChanged("id_user");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nombre {
+            get {
+                return this.nombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nombreField, value) != true)) {
+                    this.nombreField = value;
+                    this.RaisePropertyChanged("nombre");
                 }
             }
         }

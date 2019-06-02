@@ -1,0 +1,64 @@
+﻿@model IEnumerable<InnguzApp.ContextoDatos.Tipo_Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="w-full h-48 bg-indigo-400 flex p-16 items-center justify-between">
+    <h2 class="text-center text-2xl font-semibold pb-6 text-white">Tipos de producto</h2>
+    <p class="self-center">
+        @Html.ActionLink("Crear Nuevo", "Create", null, new { @class = "create text-white" })
+    </p>
+</div>
+
+<div class="w-full overflow-hidden p-4 md:p-16">
+    <div class="overflow-x-auto rounded-t-lg">
+        <table class="table w-full">
+            <tr class="head-table">
+                <th>
+                    @Html.DisplayNameFor(model => model.Tipo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaInserta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UsuarioInserta)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FechaActualiza)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UsuarioActualiza)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr class="row-body">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaInserta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UsuarioInserta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaActualiza)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UsuarioActualiza)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
